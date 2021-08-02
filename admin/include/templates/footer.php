@@ -6,6 +6,6 @@
 <script src="<?=$js?>external/aos.js"></script>
 <script src="<?=$js?>external/bootstrap.bundle.min.js"></script>
 <script src="<?=$js?>external/owl.carousel.min.js"></script>
-<script src="<?=$js?>2admin.js"></script>
+<script src="<?=$js?>admin.js"></script>
 </body>
 </html>
