@@ -1,0 +1,787 @@
+// variables
+// variables
+
+//colors
+$dark : rgb(22, 21, 21);
+$white : rgb(255, 255, 255);
+$red : rgb(240, 18, 85);
+$openRed : rgb(253, 205, 219);
+$blue : rgb(62, 99, 179);
+$openBlue : rgb(210, 221, 247);
+$green : rgb(8, 209, 98);
+$openGreen : rgb(143, 235, 184);
+$yellow : rgb(255, 251, 25);
+$openYellow : rgb(245, 243, 150);
+$gray : rgb(100, 100, 100);
+$openGray : rgb(240, 235, 235);
+
+// fonts
+$fontAmiri : 'amiri';
+$fontChilanka : 'Chilanka';
+$fontRalewayThin : 'Raleway Thin';
+$fontParisienne : 'Parisienne';
+// #################################################
+// #################################################
+// #################################################
+.form-control{
+    position: relative;
+}
+.asterisk{
+    font-size: 30px;
+    position: relative;
+    right: -91%;
+    top: -38px;
+    color: $red;
+}
+.errorMsg{ // design for alert error Message
+    border-left: 5px dashed $red;
+}
+
+// navbar
+// navbar
+.homeNav{
+    .first{
+        background-color: $dark;
+        color: $white;
+        pre{
+            color: $white;
+        }
+        span{
+            color: $red;
+        }
+        .track{
+            text-align: center;
+        }
+    }
+    .second{
+        padding-top: 10px;
+        .logo{
+            i{
+                color: $red;
+                font-size: 33px;
+            }
+            h2{
+                font-family: $fontParisienne;
+            }
+        }
+        .search{
+            form{
+                input{
+                    border: 1px solid $dark;
+                    border-radius: 10px;
+                    width: 100%;
+                    padding: 10px;
+                }
+                input:focus{
+                    border-right: 1px solid $red;
+                    border-left: 1px solid $red;
+                    border-bottom: none;
+                    border-top: none;
+                    outline: none;
+                }
+            }
+        }
+        .heart{
+            i{
+                font-size: 25px;
+                position: relative;
+                top: 16%;
+                left: 12%;
+            }
+        }
+        .sign{
+            display: flex;
+            button{
+                border: none;
+                background-color: transparent;
+                i{
+                    position: relative;
+                    top:4%;
+                    font-size: 22px;
+                    width: 20%;
+                    height: 27%;
+                }
+                span{
+                    font-weight: 890;
+                    font-size: 20px;
+                    font-family: $fontAmiri;
+                }
+                a{
+                    color: $red;
+                }
+            }
+        }
+        .cart{
+            border: none;
+            background-color: transparent;
+            button{
+                i{
+                    position: relative;
+                    top:4%;
+                    font-size: 22px;
+                    width: 20%;
+                    height: 27%;
+                }
+                span{
+                    font-weight: 890;
+                    font-size: 20px;
+                    font-family: $fontAmiri;
+                }
+            }
+        }
+    }
+    // modal
+    // modal
+    .modal{
+        .asterisk{
+            font-size: 30px;
+            position: relative;
+            right: -91%;
+            top: -38px;
+            color: $red;
+        }
+        .modal-content{
+            .modal-header{
+                .btns{
+                    .btnTab{
+                        border-bottom: 1px solid $red;
+                        border-top: 1px solid $red;
+                        border-radius: 8px;
+                    }
+                    .activeBtn{
+                        color: $red;
+                        background-color: transparent;
+                    }
+                }
+            }
+            .modal-body{
+                .content{
+                    label{
+                        display: block;
+                        width: 80%;
+                    }
+                    input{
+                        display: block;
+                        width: 97%;
+                        height: 40px;
+                        border: none;
+                        border-radius: 8px;
+                        background-color: $openGray;
+                        color: $dark;
+                    }
+                    input:focus{
+                        border-top: 1px solid $red;
+                        border-bottom: 1px solid $red;
+                        outline: none;
+                    }
+                    label[for = remember]{
+                        display: inline;
+                        margin-top: 10px;
+                        height: 14px;
+                        width: 14px;
+                    }
+                    input[type = checkbox]{
+                        display: inline;
+                        margin-top: 16px;
+                        height: 14px;
+                        width: 14px;
+                    }
+                    a{
+                        margin-left: 40%;
+                        color: $red;
+                    }
+                    input[type = submit]{
+                        background-color: $red;
+                        color: $white;
+                        margin-top: 16px;
+                    }
+                    .itemTabs{
+                        padding: 20px;
+                        display: none;
+                    }
+                    .activeItem{
+                        display: block;
+                    }
+                    .theErrors{
+                        max-width: 100%;
+                        margin: auto;
+                        .msg{
+                            padding: 10px;
+                            text-align: left;
+                            font-size: 17px;
+                            margin-bottom: 7px;
+                            border-top: 1px solid $openGray;
+                            border-right: 1px solid $openGray;
+                            border-bottom: 1px solid $openGray;
+                        }
+                        .error{
+                            background-color: $openRed;
+                            border-left: 5px solid $red;
+                        }
+                        .success{
+                            background-color: $openGreen;
+                            border-left: 5px solid $green;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // end modal
+    // end modal
+    .showdrop{
+        display: block;
+    }
+    .categories-drop{
+        background-color: $white;
+        width: 17%;
+        height: 40vh;
+        overflow-y: scroll;
+        position: absolute;
+        top: 31%;
+        left: 5%;
+        padding: 10px;
+        border-radius: 7px;
+        z-index: 1;
+        display: none;
+        h1{
+            text-align: center;
+            color: $red;
+            font-size: 30px;
+        }
+        .category{
+            position: absolute;
+            top: 24%;
+            ul{
+                list-style: none;
+                li{
+                    background-color: $openGray;
+                    padding: 10px 20px;
+                    margin: 7px 0px;
+                    border-radius: 0px 20px 0px 20px;
+                    a{
+                        color: $dark;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+
+    .brands-drop{
+        background-color: $white;
+        width: 17%;
+        height: 40vh;
+        overflow-y: scroll;
+        position: absolute;
+        top: 31%;
+        left: 17%;
+        padding: 10px;
+        border-radius: 7px;
+        z-index: 1;
+        display: none;
+        h1{
+            text-align: center;
+            color: $red;
+            font-size: 30px;
+            margin-top: 10px;
+        }
+        .brand{
+            margin: 10px 0px;
+            height: 70px;
+            ul{
+                list-style: none;
+            }
+        }
+    }
+
+    .pages-drop{
+        background-color: $white;
+        width: 17%;
+        height: 40vh;
+        overflow-y: scroll;
+        position: absolute;
+        top: 31%;
+        left: 22%;
+        padding: 10px;
+        border-radius: 7px;
+        z-index: 1;
+        display: none;
+        h1{
+            text-align: center;
+            color: $red;
+            font-size: 30px;
+            margin-top: 10px;
+        }
+        .page{
+            margin: 10px 0px;
+            height: 70px;
+            ul{
+                list-style: none;
+            }
+        }
+    }
+
+    .third{
+        .nav{
+            ul{
+                display: flex;
+                list-style: none;
+            }
+            li{
+                display: block;
+                margin: 10px;
+            }
+            a{
+                color: $dark;
+                transition: font-size .3s , color .3s;
+            }
+            a:hover{
+                text-decoration: none;
+                font-size: 19px;
+                color: $red;
+            }
+            .active{
+                color: $red;
+            }
+            .categories{
+                padding: 0px 8px;
+                border-right: 1px solid $dark;
+            }
+        }
+    }
+}
+// end of navbar
+// end of navbar
+
+// user Categories
+// user Categories
+.userCategories{
+    .head{
+        background-color: $openBlue;
+        padding: 40px 80px;
+        margin-bottom: 50px;
+        h1{
+            font-family: $fontRalewayThin;
+            font-weight: bold;
+        }
+        ul{
+            list-style: none;
+            display: flex;
+            margin-top: -50px;
+            li{
+                margin: 10px;
+                a{
+                    color: $dark;
+                }
+            }
+        }
+    }
+
+    .userItems{
+        .thumbnail{
+            img{
+                width: 100%;
+            }
+            .caption{
+                position: relative;
+                h4{
+                    text-align: center;
+                    margin: 16px 0px;
+                }
+                p{
+                    text-align: justify;
+                }
+                .price{
+                    color: $gray;
+                    margin-left: 22px;
+                    font-size: 19px;
+                }
+                .stars{
+                    position: absolute;
+                    right: 9%;
+                }
+                .date{
+                    display: block;
+                }
+            }
+        }
+    }
+}
+// end user Categories
+// end user Categories
+
+
+//header
+//header
+.header{
+    background-image: url(../images/header1.jpg);
+    background-position: right;
+    background-size: 82% 100%;
+    height: 70vh;
+    color: $white;
+    padding: 80px;
+}
+//end of header section
+//end of header section
+
+// category section
+// category section
+.category{
+    position: absolute;
+    top: 82%;
+    .content{
+        border-radius: 10px;
+        background-color: $white;
+        margin-left: 20px;
+    }
+    img{
+        width: 100%;
+        height: 230px;
+        margin: auto;
+    }
+    h6{
+        text-align: center;
+        margin: 10px 0px;
+    }
+}
+// end category section
+// end category section
+
+// trend 
+// trend 
+.trend{
+    margin-top: 160px;
+    h1{
+        text-align: center;
+    }
+    .line{
+        width: 10%;
+        height: 7px;
+        background-color: $red;
+        border-radius: 15px;
+        margin: 30px auto;
+    }
+    img{
+        width: 100%;
+        height: 250px;
+    }
+    p{
+        color: $gray;
+    }
+    .span1{
+        color: $gray;
+    }
+    .span2{
+        position: relative;
+        right: -45%;
+    }
+    .span3{
+        position: relative;
+        top: -90%;
+        right: -50%;
+        background-color: $openGray;
+        padding: 8px;
+        border-radius: 50%;
+    }
+    button{
+        margin: 2% 42%;
+        border: 1px solid $red;
+    }
+}
+//end trend 
+//end trend 
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5555
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5555
+// profile page
+// profile page
+// profile page
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5555
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5555
+.profile-page{
+    display: block;
+    width: 50%;
+    margin: auto;
+    img{
+        display: inline-block;
+        width: 22vh;
+        height: 22vh;
+        margin-right: 5%;
+        border-radius: 50%;
+    }
+    h1{
+        display: inline-block;
+        color: $red;
+        font-size: 50px;
+    }
+}
+.block{
+    margin: 20px 0px;
+}
+.information{
+    .panel{
+        background-color: $openRed;
+        border-radius: 7px;
+        padding-bottom: 7px;
+        .panel-heading{
+            padding: 20px 40px;
+        }
+        .panel-body{
+            width: 98%;
+            margin: auto;
+            background-color: $white;
+            border-radius: 7px;
+            padding: 20px 40px;
+            ul{
+                margin: 0;
+                padding: 0;
+                li{
+                    padding: 10px;
+                    border-radius: 7px;
+                    border-left: 5px solid $red;
+                    margin-bottom: 10px;
+                    span{
+                        display: inline-block;
+                        width: 19%;
+                        font-weight: bold;
+                        font-size: 20px;
+                    }
+                }
+                li:nth-child(odd){
+                    background-color: $openGray;
+                }
+            }
+            .editButton{
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+
+.myItems{
+    .panel{
+        background-color: $openGreen;
+        border-radius: 7px;
+        padding-bottom: 7px;
+        .panel-heading{
+            padding: 20px 40px;
+            
+        }
+        .panel-body{
+            width: 98%;
+            margin: auto;
+            background-color: $white;
+            border-radius: 7px;
+            padding: 20px 40px;
+            .thumbnail{
+                img{
+                    width: 100%;
+                    height: 40vh;
+                }
+                .caption{
+                    h6{
+                        text-align: center;
+                        margin: 16px 0px;
+                    }
+                    p{
+                        text-align: justify;
+                        height: 44px;
+                        max-height: 44px;
+                    }
+                    .price{
+                        color: $gray;
+                        font-size: 19px;
+                    }
+                    .stars{
+                        position: absolute;
+                        right: 9%;
+                    }
+                    .date{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+.approve{
+    background-color: $red;
+    color: $white;
+    padding: 2px 9px;
+}
+
+.myComments{
+    .panel{
+        background-color: $openYellow;
+        border-radius: 7px;
+        padding-bottom: 2px;
+        .panel-heading{
+            padding: 20px 40px;
+        }
+        .panel-body{
+            width: 98%;
+            margin: 10px auto;
+            background-color: $white;
+            border-radius: 7px;
+            padding: 20px 40px;
+        }
+    }
+}
+// end profile page
+// end profile page
+
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// create New Ad page
+// create New Ad page
+.block{
+    margin: 20px 0px;
+}
+.creat-item{
+    .asterisk{
+        font-size: 30px;
+        position: relative;
+        right: -96%;
+        top: -38px;
+        color: $red;
+    }
+    .panel{
+        background-color: $openBlue;
+        border-radius: 7px;
+        padding-bottom: 7px;
+        .panel-heading{
+            padding: 20px 40px;
+        }
+        .panel-body{
+            width: 98%;
+            margin: auto;
+            background-color: $white;
+            border-radius: 7px;
+            padding: 20px 40px;
+            .thumbnail{
+                img{
+                    width: 97%;
+                }
+                .caption{
+                    position: relative;
+                    h4{
+                        text-align: center;
+                        margin: 16px 0px;
+                    }
+                    p{
+                        text-align: justify;
+                    }
+                    .price{
+                        color: $gray;
+                        margin-left: 22px;
+                        font-size: 19px;
+                    }
+                }
+            }
+        }
+    }
+}
+// end create New Ad page
+// end create New Ad page
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
+// item page
+// item page
+.item-page{
+    .item-info{
+        p{
+            padding: 10px;
+        }
+        ul{
+            li{
+                padding: 10px;
+                span{
+                    display: inline-block;
+                    width: 15%;
+                }
+                a{
+                    color: $red;
+                }
+            }
+            li:nth-child(odd){
+                background-color: $openGray;
+            }
+            .tags{
+                display: flex;
+                ul{
+                    display: flex;
+                    li{
+                        margin-right: 7px;
+                        padding: 4px;
+                        border-radius: 4px;
+                        span{
+                            display: inline-block;
+                            width: 0%;
+                        }
+                    }
+                    li:nth-child(odd){
+                        background-color: $openGray;
+                    }
+                    li:nth-child(even){
+                        background-color: $openGray;
+                    }
+                }
+            }
+        }
+    }
+    .line{
+        width: 70%;
+        height: 7px;
+        margin: auto;
+        border-radius: 9px;
+        background-color: $openRed;
+    }
+    .add-comment{
+        h3{
+            margin: 10px 0px;
+        }
+        form{
+            margin: 10px 0px;
+            textarea{
+                width: 200%;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .comment-box{
+        margin-top: 20px;
+        .head{
+            img{
+                width: 15vh;
+                height: 15vh;
+                border-radius: 50%;
+            }
+        }
+        .comment{
+            background-color: $openGray;
+            position: relative;
+            padding: 20px;
+            margin-top: 2%;
+        }
+        .comment::before{
+            content: "";
+            width: 0;
+            height: 0;
+            border-width: 14px;
+            border-style: solid;
+            border-color: transparent $openGray transparent transparent;
+            position: absolute;
+            left: -3%;
+            top: 26%;
+        }
+    }
+}
+// end item page
+// end item page
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
