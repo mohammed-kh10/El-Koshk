@@ -1,0 +1,15 @@
+							El Koshk Project
+							El Koshk Project
+
+
+
+DATEBASE -->
+
+[ Inner Join Code in Database to relationship between tabels ]
+
+SELECT items.* , categories.Name AS CatName , users.Name AS UserName FROM items
+INNER JOIN categories ON categories.CatId = items.CatId
+INNER JOIN users ON users.UserId = items.UserId 
+// ==============================================
+// ==============================================
+

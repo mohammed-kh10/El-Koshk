@@ -1,8 +1,8 @@
 <?php
 function langEn($phrase){
-    static $lang = array(
+    static $langEn = array(
         // home page
-        'Home Admine'  => 'Home',
+        'Home_Admine'  => 'Home',
         'Categories'   => 'Categories',
         'Items'        => 'Items',
         'Members'      => 'Members',
@@ -17,7 +17,6 @@ function langEn($phrase){
         '' => '',
 
     );
-
-    return $lang ($phrase);
+    return $langEn($phrase);
 }
 ?>
