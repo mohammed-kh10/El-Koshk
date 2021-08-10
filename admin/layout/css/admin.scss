@@ -1,0 +1,483 @@
+// variables
+// variables
+
+//colors
+$dark : rgb(22, 21, 21);
+$white : rgb(255, 255, 255);
+$red : rgb(240, 18, 85);
+$openRed : rgb(255, 157, 186);
+$blue : rgb(62, 99, 179);
+$openBlue : rgb(202, 219, 255);
+$green : rgb(8, 209, 98);
+$openGreen : rgb(143, 235, 184);
+$yellow : rgb(255, 251, 25);
+$openYellow : rgb(245, 243, 150);
+$gray : rgb(100, 100, 100);
+$openGray : rgb(240, 235, 235);
+
+// fonts
+$fontAmiri : 'amiri';
+$fontChilanka : 'Chilanka';
+$fontRalewayThin : 'Raleway Thin';
+$fontParisienne : 'Parisienne';
+// #################################################
+// #################################################
+// #################################################
+.form-control{
+    position: relative;
+}
+.asterisk{
+    font-size: 30px;
+    position: absolute;
+    right: 30px;
+    top: 1px;
+    color: $red;
+}
+// admin login
+// admin login
+.admin-login{
+    .modal-content{
+        .modal-header{
+            .btns{
+                .btnTab{
+                    border-bottom: 1px solid $red;
+                    border-top: 1px solid $red;
+                    border-radius: 8px;
+                }
+                .activeBtn{
+                    color: $red;
+                    background-color: transparent;
+                }
+            }
+        }
+        .modal-body{
+            .content{
+                label{
+                    display: block;
+                    width: 80%;
+                }
+                input{
+                    display: block;
+                    width: 97%;
+                    height: 40px;
+                    border: none;
+                    border-radius: 8px;
+                    background-color: $openGray;
+                    color: $dark;
+                }
+                input:focus{
+                    border-top: 1px solid $red;
+                    border-bottom: 1px solid $red;
+                    outline: none;
+                }
+                label[for = remember]{
+                    display: inline;
+                    margin-top: 10px;
+                    height: 14px;
+                    width: 14px;
+                }
+                input[type = checkbox]{
+                    display: inline;
+                    margin-top: 16px;
+                    height: 14px;
+                    width: 14px;
+                }
+                a{
+                    margin-left: 40%;
+                    color: $red;
+                }
+                input[type = submit]{
+                    background-color: $red;
+                    color: $white;
+                    margin-top: 16px;
+                }
+                .itemTabs{
+                    padding: 20px;
+                    display: none;
+                }
+                .activeItem{
+                    display: block;
+                }
+            }
+        }
+    }
+}
+// end admin login
+// end admin login
+
+//dashboard navbar
+//dashboard navbar
+.dashNav{
+    ul{
+        li{
+            .dropdown-menu{
+                box-shadow: 0px 4px 2px 2px $red;
+            }
+            a{
+                color: $dark;
+            }
+            .active{
+                color: $red;
+            }
+        }
+        .dropdown-toggle{
+            color: $white;
+        }
+        .dropdown-toggle:focus{
+            color: $dark;
+        }
+    }
+}
+//end dashboard navbar
+//end dashboard navbar
+
+// start dashboard page
+// start dashboard page
+.dashboard{
+    h1{
+        text-align: center;
+        width: 45%;
+        border-radius: 6px;
+        position: relative;
+        left: 30%;
+        margin: 10px 0px;
+        text-shadow: 0px 4px 4px $blue;
+        font-weight: bold;
+        font-family: $fontChilanka;
+        color: $red;
+        background-color: $openGray;
+    }
+    .home-stat{
+        h6{
+            margin-bottom: -8px;
+        }
+        .bg{
+            background-color: $openRed;
+        }
+        .stat{
+            border-radius: 10px;
+            font-size: 18px;
+            text-shadow: 0px 4px 4px $blue;
+            padding: 10px 20px;
+            position: relative;
+            overflow: hidden;
+            span{
+                font-size: 55px;
+            }
+            .danger{
+                float: right;
+                i{
+                    position: absolute;
+                    font-size: 80px;
+                    top: 21px;
+                    left: 55px;
+                }
+            }
+            .info{
+                i{
+                    position: relative;
+                    font-size: 76px;
+                    left: 14px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+    .latest{
+        margin-top: 30px;
+        margin-bottom: 300px;
+        position: relative;
+        .panel{
+            background-color: $openGray;
+            .toggle-info{
+                color: $gray;
+                position: absolute;
+                top: 23px;
+                right: 47px;
+                cursor: pointer;
+            }
+            .toggle-info:hover{
+                color: $dark;
+            }
+        }
+        p{
+            display: inline;
+        }
+        .alert{
+            margin: 10px auto;
+            width: 96%;
+        }
+        .activate{
+            margin-right: 8px;
+        }
+        .comments{
+            padding: 10px 20px;
+            .comments-box{
+                background-color: $white;
+                border-radius: 5px;
+                margin: 7px auto;
+                .comUser{
+                    float: left;
+                    width: 17%;
+                    text-align: center;
+                    margin-right: 2%;
+                }
+                .comment{
+                    float: left;
+                    width: calc(100% - 100px);
+                    background-color: $openGray;
+                    padding: 10px;
+                    border-radius: 4px;
+                    position: relative;
+                }
+                .comment::before{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    left: -30px;
+                    top: 0px;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-color: transparent $openGray transparent transparent;
+                    border-width: 15px;
+                }
+            }
+        }
+    }
+}
+
+// end dashboard page
+// end dashboard page
+
+// categories page
+// categories page
+.categories{
+    margin-bottom: 100px;
+    h1{
+        text-align: center;
+        width: 35%;
+        border-radius: 10px;
+        position: relative;
+        left: 30%;
+        margin: 10px 0px;
+        text-shadow: 0px 4px 4px $blue;
+        font-weight: bold;
+        font-family: $fontParisienne;
+        color: $red;
+        background-color: $openGray;
+    }
+    .addCategories{
+        position: relative;
+        left: 41%;
+        margin-bottom: 10px;
+    }
+    .panel{
+        background-color: $openGray;
+        padding: 6px;
+        .panel-heading{
+            padding: 5px 24px;
+            background-color: $openGray;
+            border-radius: 10px 10px 0px 0px;
+            position: relative;
+            .option{
+                position: absolute;
+                top: 10%;
+                right: 4%;
+                span{
+                    cursor: pointer;
+                }
+                .active{
+                    color: $red;
+                    font-weight: bold;
+                }
+            }
+        }
+        .panel-body{
+            background-color: $white;
+            padding: 0;
+            .cat{
+                padding: 6px 30px;
+                width: 98%;
+                margin-bottom: 20px;
+                position: relative;
+                overflow: hidden;
+                h3{
+                    margin: 0px 0px 10px 0px;
+                    cursor: pointer;
+                    color: $red;
+                    text-shadow: 0px 2px 2px $blue;
+                }
+                .hidden-btn{
+                    -webkit-transition: all .3s ease-in-out;
+                    -moz-transition: all .3s ease-in-out;
+                    transition: all .3s ease-in-out;
+                    position: absolute;
+                    top: 15px;
+                    right: -200px;
+                }
+                .properties{
+                    color: $white;
+                    padding: 4px 7px;
+                    border-radius: 6px;
+                }
+                span{
+                    display: inline-block;
+                }
+                .line{
+                    width: 80%;
+                    height: 4px;
+                    margin-bottom: 0px;
+                    margin: auto;
+                    margin-top: 10px;
+                    border-radius: 10px;
+                    background-color: $openGray;
+                }
+                .childs{
+                    display: flex;
+                    margin: 10px 0;
+                    h4{
+                        width: 20%;
+                        min-width: 20%;
+                        color: $red;
+                    }
+                    ul{
+                        display: flex;
+                        li{
+                            display: block;
+                            margin: 5px 0 0 10px;
+                        }
+                    }
+                    .show-delete{
+                        display: none;
+                    }
+                }
+            }
+            .cat:hover{
+                background-color: $openBlue;
+            }
+            .cat:hover .hidden-btn{
+                right: 10px;
+            }
+            .cat:last-child .line{
+                display: none;
+            }
+        }
+    }
+}
+// end categories page
+// end categories page
+
+// items page
+// items page
+.items{
+    position: relative;
+    margin-bottom: 100px;
+    h1{
+        text-align: center;
+        width: 35%;
+        border-radius: 10px;
+        position: relative;
+        left: 30%;
+        margin: 10px 0px;
+        text-shadow: 0px 4px 4px $openGreen;
+        font-weight: bold;
+        font-family: $fontRalewayThin;
+        color: $green;
+        background-color: $openGray;
+    }
+    .addItems{
+        position: relative;
+        left: 41%;
+        margin-bottom: 10px;
+        background-color: $openGreen;
+    }
+    .table{
+        width: 98%;
+        margin: auto;
+        box-shadow: 0px 17px 60px -27px $green;
+        td{
+            vertical-align: middle;
+        }
+        .image{
+            img{
+                max-width: 100px;
+                max-height: 100px;
+            }
+        }
+    }
+}
+// end items page
+// end items page
+
+// members page
+// members page
+.members{
+    margin-bottom: 100px;
+    h1{
+        text-align: center;
+        width: 35%;
+        border-radius: 10px;
+        position: relative;
+        left: 30%;
+        margin: 10px 0px;
+        text-shadow: 0px 4px 4px $dark;
+        font-weight: bold;
+        font-family: $fontRalewayThin;
+        color: $blue;
+        background-color: $openGray;
+    }
+    .table{
+        box-shadow: 0px 17px 60px -27px $blue;
+        td{
+            vertical-align: middle;
+        }
+        .image{
+            img{
+                max-width: 100px;
+                max-height: 100px;
+            }
+        }
+    }
+    .addMember{
+        position: relative;
+        left: 41%;
+        margin-bottom: 10px;
+    }
+    .show-password{
+        position: absolute;
+        top: 2px;
+        right: -32px;
+    }
+}
+// end members page
+// end members page
+
+// comments page
+// comments page
+.comments{
+    margin-bottom: 100px;
+    h1{
+        text-align: center;
+        width: 40%;
+        border-radius: 10px;
+        position: relative;
+        left: 30%;
+        margin: 10px 0px;
+        text-shadow: 0px 4px 4px $dark;
+        font-weight: bold;
+        font-family: $fontAmiri;
+        color: $yellow;
+        background-color: $openGray;
+    }
+    .table{
+        width: 98%;
+        margin: auto;
+        box-shadow: 0px 17px 60px -27px $openYellow;
+        td{
+            vertical-align: middle;
+        }
+    }
+}
+// end comments page
+// end comments page
