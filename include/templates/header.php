@@ -8,7 +8,7 @@
     </div><!-- content -->
 </header><!-- end of header section -->
 
-<section class="category">
+<section class="category d-none d-md-block">
     <div class="container-fluid">
         <div class="row">
             <div class="col-2 content">

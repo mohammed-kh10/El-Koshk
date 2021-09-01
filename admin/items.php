@@ -98,7 +98,7 @@ if (isset($_SESSION['userName'])) {
             <h1>Add New Items</h1>
 
             <div class="container">
-                <form action="?do=insert" method="POST" class="form-horizontal">
+                <form action="?do=insert" method="POST" class="form-horizontal" enctype="multipart/form-data">
                     <!-- start Item Name -->
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
@@ -197,6 +197,15 @@ if (isset($_SESSION['userName'])) {
                     </div><!-- form group -->
                     <!-- end Tags -->
 
+                    <!-- start image -->
+                    <div class="form-group">
+                        <label for="image" class="col-sm-2 control-label">Image</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="image" id="image" class="form-control btn btn-secondary">
+                        </div>
+                    </div><!-- form group -->
+                    <!-- end image -->
+
                     <!-- start submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
@@ -215,7 +224,21 @@ if (isset($_SESSION['userName'])) {
         <div class="container-fluid items">
                 <h1>Insert Items</h1>
 
-    <?php   $name = $_POST['name'];
+    <?php   
+            // uploads files
+            $imageName = $_FILES['image']['name'];
+            $imageSize = $_FILES['image']['size'];
+            $imageTmp = $_FILES['image']['tmp_name'];
+            $imageType  = $_FILES['image']['type'];
+
+            // list of Allowed file type to uploaded
+            $imageAllowedExtension = array("jpg" , "jpeg" , "png");
+
+            // get image extension
+            $imageExtensionExplode = explode(' ' , $imageName);
+            $imageExtension = strtolower(end($imageExtensionExplode));
+            
+            $name = $_POST['name'];
             $description = $_POST['description'];
             $price = $_POST['price'];
             $country = $_POST['country'];
@@ -256,17 +279,31 @@ if (isset($_SESSION['userName'])) {
                 $formErrors[] = 'You Must Choose The <strong>Item Category</strong>';
             }
 
+            if (!empty($imageName) && in_array($imageExtension , $imageAllowedExtension)) {
+                $formErrors[] = 'This Extention Is Not <strong>Allowed</strong>';
+            }
+
+            if ($imageSize > 5194304) {
+                $formErrors[] = "Image Can't Be Larger Than <strong>5MB</strong>";
+            }
+
             foreach($formErrors as $error){
                 echo '<div class="alert alert-danger">' . $error . '</div>';
             }
             // check if there's no errors procced the update data
             if (empty($formErrors)) {
+                $image = '';
+                if (!empty($imageName)) {
+                    $image = rand(0 , 10000000) . '_' . $imageName;
+                    move_uploaded_file($imageTmp , '../data/uploads/images/' . $image);
+                }
+
                 // insert the data 
                 $stmt = $con->prepare("INSERT INTO 
                 items
-                    (Name , Description , Price , CountryMade , Status , AddDate , CatId , UserId , Tags)
+                    (Name , Description , Price , CountryMade , Status , AddDate , CatId , UserId , Tags , Image)
                 VALUES
-                    (:zname , :zdescription , :zprice , :zcountry , :zstatus , now() , :zcat , :zuser , :ztags)");
+                    (:zname , :zdescription , :zprice , :zcountry , :zstatus , now() , :zcat , :zuser , :ztags , :zimage)");
                 $stmt->execute(array(
                     'zname' => $name,
                     'zdescription' => $description,
@@ -276,6 +313,7 @@ if (isset($_SESSION['userName'])) {
                     'zcat' => $category,
                     'zuser' => $member,
                     'ztags' => $tags,
+                    'zimage' => $image,
                 ));
                 // should be $id variable in last variable in array
 
@@ -304,7 +342,7 @@ if (isset($_SESSION['userName'])) {
             <h1>Edit Item</h1>
 
             <div class="container">
-                <form action="?do=update" method="POST" class="form-horizontal">
+                <form action="?do=update" method="POST" class="form-horizontal" enctype="multipart/form-data">
                     <input type="hidden" name="itemId" value="<?= $itemId?>">
                     <!-- start Item Name -->
                     <div class="form-group">
@@ -405,6 +443,15 @@ if (isset($_SESSION['userName'])) {
                     </div><!-- form group -->
                     <!-- end Tags -->
 
+                    <!-- start image -->
+                    <div class="form-group">
+                        <label for="image" class="col-sm-2 control-label">Image</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="image" id="image" class="form-control btn btn-secondary">
+                        </div>
+                    </div><!-- form group -->
+                    <!-- end image -->
+
                     <!-- start submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
@@ -477,75 +524,105 @@ if (isset($_SESSION['userName'])) {
             <div class="container-fluid items">
                     <h1>Update Item</h1>
 
-        <?php   $id = $_POST['itemId'];
-                $name = $_POST['name'];
-                $description = $_POST['description'];
-                $price = $_POST['price'];
-                $country = $_POST['country'];
-                $status = $_POST['status'];
-                $category = $_POST['category'];
-                $member = $_POST['member'];
-                $tags = $_POST['tags'];
-
-                // validate the form
-                // validate the form
-                $formErrors = array();
-
-                if (empty($name)) {
-                    $formErrors[] = 'Item Name Can not be <strong>Empty</strong>';
-                }
-
-                if (empty($description)) {
-                    $formErrors[] = 'Item Description Can not be <strong>Empty</strong>';
-                }
-
-                if (empty($price)) {
-                    $formErrors[] = 'Item Price Can not be <strong>Empty</strong>';
-                }
-
-                if (empty($country)) {
-                    $formErrors[] = 'Item Country Can not be <strong>Empty</strong>';
-                }
-
-                if ($status == 0) {
-                    $formErrors[] = 'You Must Choose The <strong>Item Status</strong>';
-                }
-
-                if ($member == 0) {
-                    $formErrors[] = 'You Must Choose The <strong>Item Member</strong>';
-                }
-
-                if ($category == 0) {
-                    $formErrors[] = 'You Must Choose The <strong>Item Category</strong>';
-                }
-
-                foreach($formErrors as $error){
-                    echo '<div class="alert alert-danger">' . $error . '</div>';
-                }
-                // check if there's no errors procced the update data
-                if (empty($formErrors)) {
-                    // update the data 
-                    $stmt = $con->prepare("UPDATE
-                                                items
-                                            SET
-                                                Name = ? ,
-                                                Description = ? ,
-                                                Price = ? ,
-                                                CountryMade = ? ,
-                                                Status = ? ,
-                                                CatId = ? ,
-                                                UserId = ? ,
-                                                Tags = ? ,
-                                            WHERE
-                                                ItemId = ?");
-                    $stmt->execute(array($name , $description , $price , $country , $status , $category , $member , $tags , $id));
-                    // should be $id variable in last variable in array
+        <?php   
         
-                    // print success message
-                        $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Udate</div>';
-                        redirect($theMsg , 'back');
+            // uploads files
+            $imageName = $_FILES['image']['name'];
+            $imageSize = $_FILES['image']['size'];
+            $imageTmp = $_FILES['image']['tmp_name'];
+            $imageType  = $_FILES['image']['type'];
+
+            // list of Allowed file type to uploaded
+            $imageAllowedExtension = array("jpg" , "jpeg" , "png");
+
+            // get image extension
+            $imageExtensionExplode = explode(' ' , $imageName);
+            $imageExtension = strtolower(end($imageExtensionExplode));
+
+            $id = $_POST['itemId'];
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $price = $_POST['price'];
+            $country = $_POST['country'];
+            $status = $_POST['status'];
+            $category = $_POST['category'];
+            $member = $_POST['member'];
+            $tags = $_POST['tags'];
+
+            // validate the form
+            // validate the form
+            $formErrors = array();
+
+            if (empty($name)) {
+                $formErrors[] = 'Item Name Can not be <strong>Empty</strong>';
+            }
+
+            if (empty($description)) {
+                $formErrors[] = 'Item Description Can not be <strong>Empty</strong>';
+            }
+
+            if (empty($price)) {
+                $formErrors[] = 'Item Price Can not be <strong>Empty</strong>';
+            }
+
+            if (empty($country)) {
+                $formErrors[] = 'Item Country Can not be <strong>Empty</strong>';
+            }
+
+            if ($status == 0) {
+                $formErrors[] = 'You Must Choose The <strong>Item Status</strong>';
+            }
+
+            if ($member == 0) {
+                $formErrors[] = 'You Must Choose The <strong>Item Member</strong>';
+            }
+
+            if ($category == 0) {
+                $formErrors[] = 'You Must Choose The <strong>Item Category</strong>';
+            }
+
+            if (!empty($imageName) && in_array($imageExtension , $imageAllowedExtension)) {
+                $formErrors[] = 'This Extention Is Not <strong>Allowed</strong>';
+            }
+
+            if ($imageSize > 5194304) {
+                $formErrors[] = "Image Can't Be Larger Than <strong>5MB</strong>";
+            }
+
+            foreach($formErrors as $error){
+                echo '<div class="alert alert-danger">' . $error . '</div>';
+            }
+            // check if there's no errors procced the update data
+            if (empty($formErrors)) {
+                $image = '';
+                if (!empty($imageName)) {
+                    $image = rand(0 , 10000000) . '_' . $imageName;
+                    move_uploaded_file($imageTmp , '../data/uploads/images/' . $image);
                 }
-                ?></div><?php
+
+                // update the data 
+                $stmt = $con->prepare("UPDATE
+                                            items
+                                        SET
+                                            Name = ? ,
+                                            Description = ? ,
+                                            Price = ? ,
+                                            CountryMade = ? ,
+                                            Status = ? ,
+                                            CatId = ? ,
+                                            UserId = ? ,
+                                            Tags = ? ,
+                                            Image = ?
+                                        WHERE
+                                            ItemId = ?");
+                $stmt->execute(array($name , $description , $price , $country , $status , $category , $member , $tags , $image , $id));
+                // should be $id variable in last variable in array
+    
+                // print success message
+                    $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Udate</div>';
+                    redirect($theMsg , 'back');
+            }
+            ?></div><?php
             }else {
                 // message for error id 
                 echo '<div class="container>';

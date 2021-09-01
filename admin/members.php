@@ -199,7 +199,7 @@ if (isset($_SESSION['userName'])) {
                 }
 
                 if ($imageSize > 5194304) {
-                    $formErrors[] = "Image Can't Be Larger Than <strong>4MB</strong>";
+                    $formErrors[] = "Image Can't Be Larger Than <strong>5MB</strong>";
                 }
     
                 foreach($formErrors as $error){
@@ -262,7 +262,7 @@ if (isset($_SESSION['userName'])) {
             <h1>Edit Member</h1>
 
             <div class="container">
-                <form action="?do=update" method="POST" class="form-horizontal">
+                <form action="?do=update" method="POST" class="form-horizontal" enctype="multipart/form-data">
                     <input type="hidden" name="userId" value="<?= $userId?>">
                     <!-- start user Name -->
                     <div class="form-group">
@@ -301,6 +301,15 @@ if (isset($_SESSION['userName'])) {
                     </div><!-- form group -->
                     <!-- end full Name -->
 
+                    <!-- start image -->
+                    <div class="form-group">
+                        <label for="image" class="col-sm-2 control-label">User Avatar</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="image" id="image" class="form-control">
+                        </div>
+                    </div><!-- form group -->
+                    <!-- end image -->
+
                     <!-- start submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
@@ -333,6 +342,19 @@ if (isset($_SESSION['userName'])) {
                 // password Trick
                 $password = empty($_POST['newPassword']) ? $_POST['oldPassword'] : sha1($_POST['newPassword']);
 
+                // uploade Variables
+                $imageName  = $_FILES['image']['name'];
+                $imageSize  = $_FILES['image']['size'];
+                $imageTmp   = $_FILES['image']['tmp_name'];
+                $imageType  = $_FILES['image']['type'];
+
+                // list of Allowed file type to uploaded
+                $imageAllowedExtension = array("jpg" , "jpeg" , "png");
+
+                // get image extension
+                $imageExtensionExplode = explode(' ' , $imageName);
+                $imageExtension = strtolower(end($imageExtensionExplode));
+
                 // validate the form
                 // validate the form
                 $formErrors = array();
@@ -355,12 +377,25 @@ if (isset($_SESSION['userName'])) {
                 if (empty($fullName)) {
                     $formErrors[] = 'Full Name Can not be <strong>Empty</strong>';
                 }
+
+                if (!empty($imageName) && in_array($imageExtension , $imageAllowedExtension)) {
+                    $formErrors[] = 'This Extention Is Not <strong>Allowed</strong>';
+                }
+
+                if ($imageSize > 5194304) {
+                    $formErrors[] = "Image Can't Be Larger Than <strong>5MB</strong>";
+                }
     
                 foreach($formErrors as $error){
                     echo '<div class="alert alert-danger">' . $error . '</div>';
                 }
                 // check if there's no errors procced the update data
                 if (empty($formErrors)) {
+                    $image = '';
+                    if (!empty($imageName)) {
+                        $image = rand(0 , 100000) . '_' . $imageName;
+                        move_uploaded_file($imageTmp , '../data/uploads/images/' . $image);
+                    }
 
                     $stmt2 = $con -> prepare("SELECT
                                                     *
@@ -386,10 +421,11 @@ if (isset($_SESSION['userName'])) {
                                                     Name = ? ,
                                                     Password = ? ,
                                                     Email = ? ,
-                                                    FullName = ?
+                                                    FullName = ? ,
+                                                    Image = ?
                                                 WHERE
                                                     UserId = ?");
-                        $stmt->execute(array($name , $password , $email , $fullName , $id));
+                        $stmt->execute(array($name , $password , $email , $fullName , $image , $id));
                         // should be $id variable in last variable in array
 
                         // print success message
