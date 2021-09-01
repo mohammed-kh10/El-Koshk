@@ -8,6 +8,7 @@ $red : rgb(240, 18, 85);
 $openRed : rgb(253, 205, 219);
 $blue : rgb(62, 99, 179);
 $openBlue : rgb(210, 221, 247);
+$darkBlue : rgb(1, 13, 41);
 $green : rgb(8, 209, 98);
 $openGreen : rgb(143, 235, 184);
 $yellow : rgb(255, 251, 25);
@@ -33,8 +34,17 @@ $fontParisienne : 'Parisienne';
     top: -38px;
     color: $red;
 }
+
 .errorMsg{ // design for alert error Message
     border-left: 5px dashed $red;
+}
+
+.demoStore{
+    width: 59%;
+    position: fixed;
+    top: 90vh;
+    left: 21%;
+    z-index: 10;
 }
 
 // navbar
@@ -115,6 +125,12 @@ $fontParisienne : 'Parisienne';
             border: none;
             background-color: transparent;
             button{
+                .count{
+                    padding: 3px;
+                    border-radius: 50%;
+                    color: $white;
+                    background-color: $red;
+                }
                 i{
                     position: relative;
                     top:4%;
@@ -122,7 +138,7 @@ $fontParisienne : 'Parisienne';
                     width: 20%;
                     height: 27%;
                 }
-                span{
+                .price{
                     font-weight: 890;
                     font-size: 20px;
                     font-family: $fontAmiri;
@@ -130,9 +146,9 @@ $fontParisienne : 'Parisienne';
             }
         }
     }
-    // modal
-    // modal
-    .modal{
+    // sign modal
+    // sign modal
+    .signModal{
         .asterisk{
             font-size: 30px;
             position: relative;
@@ -227,8 +243,37 @@ $fontParisienne : 'Parisienne';
             }
         }
     }
-    // end modal
-    // end modal
+    // end sign modal
+    // end sign modal
+
+    // cart modal
+    // cart modal
+    .cartModal{
+        width: 70%;
+        //right: 0;
+        //left: 37%;
+        .modal-dialog{
+            margin: 0;
+            max-width: 100%;
+            .modal-content{
+                .modal-body{
+                    img{
+                        display: inline-block;
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                    }
+                    h3{
+                        display: inline-block;
+                        width: calc(100% - 150px);
+                    }
+                }
+            }
+        }
+    }
+    // end cart modal
+    // end cart modal
+
     .showdrop{
         display: block;
     }
@@ -323,7 +368,7 @@ $fontParisienne : 'Parisienne';
     }
 
     .third{
-        .nav{
+        nav{
             ul{
                 display: flex;
                 list-style: none;
@@ -354,62 +399,20 @@ $fontParisienne : 'Parisienne';
 // end of navbar
 // end of navbar
 
-// user Categories
-// user Categories
-.userCategories{
-    .head{
-        background-color: $openBlue;
-        padding: 40px 80px;
-        margin-bottom: 50px;
-        h1{
-            font-family: $fontRalewayThin;
-            font-weight: bold;
-        }
-        ul{
-            list-style: none;
-            display: flex;
-            margin-top: -50px;
-            li{
-                margin: 10px;
-                a{
-                    color: $dark;
-                }
-            }
-        }
-    }
-
-    .userItems{
-        .thumbnail{
-            img{
-                width: 100%;
-            }
-            .caption{
-                position: relative;
-                h4{
-                    text-align: center;
-                    margin: 16px 0px;
-                }
-                p{
-                    text-align: justify;
-                }
-                .price{
-                    color: $gray;
-                    margin-left: 22px;
-                    font-size: 19px;
-                }
-                .stars{
-                    position: absolute;
-                    right: 9%;
-                }
-                .date{
-                    display: block;
-                }
-            }
-        }
+// goToDashboard
+// goToDashboard
+.goToDashboard{
+    width: 3%;
+    top: 33%;
+    right: 0%;
+    position: fixed;
+    z-index: 90;
+    a{
+        box-shadow: 0px 0px 9px 4px $dark;
     }
 }
-// end user Categories
-// end user Categories
+// end goToDashboard
+// end goToDashboard
 
 
 //header
@@ -424,6 +427,7 @@ $fontParisienne : 'Parisienne';
 }
 //end of header section
 //end of header section
+
 
 // category section
 // category section
@@ -491,6 +495,165 @@ $fontParisienne : 'Parisienne';
 }
 //end trend 
 //end trend 
+
+
+// user Categories
+// user Categories
+.userCategories{
+    .head{
+        background-color: $openBlue;
+        padding: 40px 80px;
+        margin-bottom: 50px;
+        h1{
+            font-family: $fontRalewayThin;
+            font-weight: bold;
+        }
+        ul{
+            list-style: none;
+            display: flex;
+            margin-top: -50px;
+            li{
+                margin: 10px;
+                a{
+                    color: $dark;
+                }
+            }
+        }
+    }
+    .line{
+        width: 7%;
+        height: 7px;
+        background-color: $red;
+        border-radius: 15px;
+        margin: 30px auto;
+    }
+
+    .userItems{
+        width: 87%;
+        margin: auto;
+        .thumbnail{
+            margin-bottom: 10px;
+            img{
+                width: 85%;
+                height: 30vh;
+                max-height: 30vh;
+            }
+            .caption{
+                position: relative;
+                h4{
+                    text-align: center;
+                    margin: 16px 0px;
+                }
+                p{
+                    text-align: justify;
+                }
+                .price{
+                    color: $gray;
+                    margin-left: 22px;
+                    font-size: 19px;
+                }
+                .stars{
+                    position: absolute;
+                    right: 9%;
+                }
+                .date{
+                    display: block;
+                }
+            }
+        }
+    }
+}
+// end user Categories
+// end user Categories
+
+
+// banner
+// banner
+.banner{
+    margin: 100px auto;
+        width: 90%;
+        .back{
+            background-color: #f6fafd;
+            border-radius: 10px;
+            .offer{
+                border-radius: 10px;
+                height: 31vh;
+                padding: 27px;
+                background-image: url(../images/banner.jpg);
+                background-repeat: no-repeat;
+                background-position: right;
+            }
+        }
+        .spot{
+            background-color: #c3dbf7;
+            padding: 22px;
+            text-align: center;
+            height: 31vh;
+            border-radius: 10px;
+        }
+}
+// end banner
+// end banner
+
+// items Brands
+// items Brands
+.itemsBrands{
+    h1{
+        text-align: center;
+        font-size: 55px;
+        margin: 20px 0px;
+        font-family: $fontChilanka;
+    }
+    .line{
+        width: 10%;
+        height: 7px;
+        background-color: $blue;
+        border-radius: 15px;
+        margin: 30px auto;
+    }
+    img{
+        width: 90%;
+        margin-bottom: 15px;
+        border-radius: 7px;
+        box-shadow: 0px 0px 5px 1px $dark;
+        transition: transform .3s;
+    }
+    img:hover{
+        transform: scale(1.1);
+    }
+}
+// end items Brands
+// end items Brands
+
+// social
+// social
+.social{
+    overflow-x: hidden;
+    margin-top: 70px;
+    .col-md-6{
+        padding: 0;
+    }
+    .twitter , .instagram{
+        padding: 50px;
+        text-align: center;
+    }
+    .twitter{
+        background-color: $openBlue;
+        i{
+            color: $blue;
+            font-size: 40px;
+        }
+    }
+    .instagram{
+        background-color: $openRed;
+        i{
+            color: $red;
+            font-size: 40px;
+        }
+    }
+}
+// end social
+// end social
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5555
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5555
@@ -693,7 +856,67 @@ $fontParisienne : 'Parisienne';
 // item page
 // item page
 .item-page{
+    position: relative;
+    .head{
+        h1{
+            height : 30vh;
+        }
+        ul{
+            display: flex;
+            position: absolute;
+            right: 2%;
+            top: 4.5%;
+            li{
+                margin: 10px;
+                a{
+                    color: $white;
+                }
+                a:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
     .item-info{
+        position: relative;
+        top: -77px;
+        border-radius: 7px;
+        box-shadow: 0px 0px 17px 5px $dark;
+        padding: 30px;
+        background-color: $white;
+        width: 90%;
+        margin: auto;
+        .list-images{
+            img{
+                width: 70%;
+                height: 17vh;
+                margin-bottom: 10px;
+                border-radius: 7px;
+            }
+        }
+        .item-image{
+            img{
+                width: 97%;
+                height: 100%;
+                border-radius: 7px;
+            }
+        }
+        .item-data{
+            position: relative;
+            span{
+                display: block;
+            }
+            .heart{
+                position: absolute;
+                right: 2%;
+                padding: 8px;
+                background-color: $openGray;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .myitem-info{
         p{
             padding: 10px;
         }
@@ -785,3 +1008,63 @@ $fontParisienne : 'Parisienne';
 // end item page
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
+
+// footer
+// footer
+footer{
+    background-color: $darkBlue;
+    color: $white;
+    padding: 30px 0px;
+    .container{
+        max-width: 90%;
+    }
+    .first{
+        h4{
+            font-family: $fontAmiri;
+            font-weight: bold;
+        }
+        ul{
+            li{
+                a{
+                    color: $gray;
+                    text-decoration: none;
+                    transition: color .7s , font-size .2s;
+                }
+                a:hover{
+                    color: $white;
+                    font-size: 20px;
+                    text-decoration: none;
+                }
+            }
+        }
+        form{
+            input[type = email]{
+                border: none;
+                outline: none;
+                height: 36px;
+                width: 70%;
+                position: relative;
+                top: 3px;
+                left: 5px;
+            }
+        }
+        p{
+            color: $gray;
+        }
+    }
+    .second{
+        margin-top: 30px;
+        i{
+            display: inline-block;
+            width: 10%;
+            color: $red;
+            font-size: 33px;
+            margin-right: 14px;
+        }
+        h4{
+            display: inline-block;
+        }
+    }
+}
+// end footer
+// end footer

@@ -13,8 +13,8 @@ if (isset($_SESSION['user'])) {
 ?>
     <div class="profile-page">
         <?php
-        if (!empty($row['image'])) { ?>
-            <img src="data/uploads/images/<?= $row['image']?>" alt="">
+        if (!empty($row['Image'])) { ?>
+            <img src="data/uploads/images/<?= $row['Image']?>" alt="">
         <?php }else { ?>
             <img src="data/uploads/images/defaultProfileImage.jpg" alt="">
         <?php } ?>
@@ -81,8 +81,12 @@ if (isset($_SESSION['user'])) {
                                     <div class="thumbnail">
                                         <?php if($item['Approve'] == 0){ ?>
                                             <span class="approve">Waiting Approval</span>
-                                        <?php }?>
-                                        <img src="layout/images/01.jpg" alt="">
+                                        <?php }
+                                        if (!empty($item['Image'])) { ?>
+                                            <img src="data/uploads/images/<?= $item['Image']?>" alt="">
+                                        <?php }else { ?>
+                                            <img src="data/uploads/images/defaultItemImage.jpg" alt="">
+                                        <?php } ?>
                                         <div class="caption">
                                             <h6><a href="item.php?itemId=<?= $item['ItemId']?>"><?= $item['Name']?></a></h6>
                                             <p><?= $item['Description']?></p>

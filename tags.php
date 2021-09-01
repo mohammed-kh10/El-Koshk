@@ -24,8 +24,12 @@ if (isset($_GET['name'])) {
                         <div class="thumbnail">
                         <?php if($item['Approve'] == 0){ ?>
                             <span class="approve">Waiting Approval</span>
-                        <?php }?>
-                            <img src="layout/images/01.jpg" alt="">
+                        <?php }
+                        if (!empty($item['Image'])) { ?>
+                            <img src="data/uploads/images/<?= $item['Image']?>" alt="">
+                        <?php }else { ?>
+                            <img src="data/uploads/images/defaultItemImage.jpg" alt="">
+                        <?php } ?>
                             <div class="caption">
                                 <h4><a href="item.php?itemId=<?= $item['ItemId']?>"><?= $item['Name']?></a></h4>
                                 <p><?= $item['Description']?></p>

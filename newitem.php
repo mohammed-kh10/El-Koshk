@@ -210,7 +210,7 @@ if (isset($_SESSION['user'])) {
 
                         <div class="col-md-4">
                             <div class="thumbnail live-preview">
-                                <img src="layout/images/messi.jpg" alt="">
+                                <img src="data/uploads/images/defaultItemImage.jpg" alt="">
                                 <div class="caption">
                                     <h4>Title</h4>
                                     <p>Description</p>

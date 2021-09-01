@@ -19,7 +19,6 @@ include 'init.php';
                                 categories
                             ON
                                 categories.CatId = items.CatId
-
                             INNER JOIN
                                 users
                             ON
@@ -36,16 +35,141 @@ include 'init.php';
         
         
         <section class="item-page">
-            <h1 class="text-center fa-4x text-danger mb-4">Show Category</h1>
+            <div class="head">
+                <h1 class="bg-dark p-5 px-5 text-white"><?= $item['Name']?></h1>
+
+                <ul class="list-unstyled">
+                    <li><a href="index.php"><i class="fas fa-home"></i> Home > </a></li>
+                    <li><a href="#">Shop > </a></li>
+                    <a href="categories.php?pageId=<?= $item['CatId']?>&pageName=" class="text-warning fa-2x"><strong><?= $item['CatName']?></strong></a>
+                </ul>
+            </div><!-- head  -->
+
+            <div class="item-info">
+                <div class="row">
+                    <div class="col-md-2 ">
+                        <div class="list-images">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#"><?php
+                                    if (!empty($item['Image'])) {?>
+                                        <img src="data/uploads/images/<?= $item['Image']?>" alt="">
+                                    <?php }else { ?>
+                                        <img src="data/uploads/images/defaultItemImage.jpg" alt="">
+                                    <?php } ?></a>
+                                </li>
+
+                                <li>
+                                    <a href="#"><?php
+                                    if (!empty($item['Image'])) {?>
+                                        <img src="data/uploads/images/<?= $item['Image']?>" alt="">
+                                    <?php }else { ?>
+                                        <img src="data/uploads/images/defaultItemImage.jpg" alt="">
+                                    <?php } ?></a>
+                                </li>
+
+                                <li>
+                                    <a href="#"><?php
+                                    if (!empty($item['Image'])) {?>
+                                        <img src="data/uploads/images/<?= $item['Image']?>" alt="">
+                                    <?php }else { ?>
+                                        <img src="data/uploads/images/defaultItemImage.jpg" alt="">
+                                    <?php } ?></a>
+                                </li>
+
+                                <li>
+                                    <a href="#"><?php
+                                    if (!empty($item['Image'])) {?>
+                                        <img src="data/uploads/images/<?= $item['Image']?>" alt="">
+                                    <?php }else { ?>
+                                        <img src="data/uploads/images/defaultItemImage.jpg" alt="">
+                                    <?php } ?></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- col-2 list images -->
+
+                    <div class="col-md-5 item-image">
+                        <?php
+                        if (!empty($item['Image'])) {?>
+                            <img src="data/uploads/images/<?= $item['Image']?>" alt="">
+                        <?php }else { ?>
+                            <img src="data/uploads/images/defaultItemImage.jpg" alt="">
+                        <?php } ?>
+                    </div><!-- col-5 item image -->
+
+                    <div class="col-md-5 item-data">
+                        <span class="heart"><i class="fa fa-heart"></i></span>
+                        
+                        <span class="review">
+                            <?php
+                            if ($item['Rating'] == 1) {
+                                echo '*';
+                            }elseif ($item['Rating'] == 2) {
+                                echo '* *';
+                            }elseif ($item['Rating'] == 3) {
+                                echo '* * *';
+                            }elseif ($item['Rating'] == 4) {
+                                echo '* * * *';
+                            }elseif ($item['Rating'] == 5) {
+                                echo '* * * * *';
+                            }else {
+                                echo 'this item not have a review';
+                            }
+                            ?>
+                            Review
+                        </span>
+                        
+                        <span class="price">$ <?= $item['Price']?></span>
+
+                        <span class="colors"><strong>Color : </strong><a href="#">Red</a> / <a href="#">Dark Blue</a> / <a href="#">White</a></span>
+
+                        <span class="available">product available</span>
+
+                        <div class="size">
+                            <p>Size: </p>
+                            <form action="">
+                                <select name="" id="">
+                                    <option value="">Select size</option>
+                                </select>
+                            </form>
+                        </div><!-- size -->
+
+                        <div class="add-to-cart">
+                            <div class="row">
+                                <div class="col-3">
+                                    <form action="">
+                                        <input type="number" name="" id="">
+                                    </form>
+                                </div><!-- col-3 -->
+
+                                <div class="col-9">
+                                    <a href="#" class="btn btn-danger text-white mx-5 my-3 d-block w-50">Add to cart</a>
+                                </div><!-- col-9 -->
+                            </div><!-- row -->
+                        </div><!-- add-to-cart -->
+
+                        <div class="content">
+                            
+                        </div><!-- item-content -->
+
+                    </div><!-- col-5 item info -->
+                </div><!-- row -->
+            </div><!-- container -->
+
 
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="layout/images/messi.jpg" class="img-thumbnail" alt="">
+                    <?php
+                        if (!empty($item['Image'])) {?>
+                            <img src="data/uploads/images/<?= $item['Image']?>" class="img-thumbnail" alt="">
+                        <?php }else { ?>
+                            <img src="data/uploads/images/defaultItemImage.jpg" class="img-thumbnail" alt="">
+                        <?php } ?>
                     </div><!-- col-3 for image -->
 
-                    <div class="col-md-9 item-info">
-                        <h2><?= $item['Name']?></h2>
+                    <div class="col-md-9 myitem-info">
                         <p><?= $item['Description']?></p>
                         <ul class="list-unstyled">
                             <li>
@@ -88,6 +212,7 @@ include 'init.php';
                                 </ul>
                             </li>
                         </ul>
+                        <a href="#" class="btn btn-danger text-white mx-5 my-3 d-block w-50">Add to cart</a>
                     </div><!-- col-9 for info -->
                 </div><!-- row -->
 
@@ -138,7 +263,8 @@ include 'init.php';
                 <?php
                     $stmt = $con->prepare("SELECT
                                                 comments.* ,
-                                                users.Name AS UserName
+                                                users.Name AS UserName , 
+                                                users.Image AS UserImage
                                             FROM
                                                 comments
                                             INNER JOIN
@@ -159,7 +285,12 @@ include 'init.php';
                     <div class="row">
                         <div class="col-md-2 text-center">
                             <div class="head">
-                                <img src="layout/images/messi.jpg" alt="">
+                                <?php
+                                if (!empty($comment['UserImage'])) { ?>
+                                    <img src="data/uploads/images/<?= $comment['UserImage']?>" alt="">
+                                <?php }else { ?>
+                                    <img src="data/uploads/images/defaultProfileImage.jpg" alt="">
+                                <?php } ?>
                                 <h4><?= $comment['UserName'] ?></h4>
                             </div><!-- head -->
                         </div><!-- col-3 -->
@@ -168,9 +299,8 @@ include 'init.php';
                             <p class="comment"><?= $comment['Comment']?></p>
                         </div><!-- col-9 -->
                     </div><!-- row -->
-                    <div class="line"></div>
                 </div><!-- comment box -->
-            <?php } ?>
+                <?php } ?>
             </div><!-- container -->
         </section><!-- item page -->
         
